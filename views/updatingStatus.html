@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<form action="/">
+  <input type="submit" class="admin" value="Logout">
+</form>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Senior Leaves</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+
+<form action="/loadAdminLogin" class="admin" method="GET">
+  <input type="submit" class="admin" value="Admin Login">
+</form>
+
+  <body>
+    <center>
+    <div class="login">
+      <div id="seniorLeaves">
+      
+        <strong><span>{{confusedPlatypus}}</span>'s page</strong>
+     
+      </div>
+      
+    
+      <br>
+
+      <form action="/postTimeStart" method="POST">
+        <input type="submit" class="choices" value="Start Leave" name="startLeave"/>
+        <input type="hidden", name="name", value="{{confusedPlatypus}}"/>
+      </form>
+
+      <form action="/postTimeEnd" method="POST">
+        <input type="submit" class="choices" value="End Leave" name="endLeave"/>
+        <input type="hidden", name="name", value="{{confusedPlatypus}}"/>
+      </form>
+      
+      <form action="/getUserPortalLogin" method="GET">
+        <input type="submit" class="choices" value="Info" name="info"/>
+        <input type="hidden", name="name", value="{{confusedPlatypus}}"/>
+      </form>
+
+    </div>
+    </center>
+    
+  </body>
+</html>

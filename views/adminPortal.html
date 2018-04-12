@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<form action="/loadAdminLogin">
+  <input type="submit" value="Logout">
+</form>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Portal</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body class=admin_portal>
+    <h1>Admin Portal</h1>
+    <div id="page_container">
+    <form action="">
+      <input type="text" id="SearchInput" name="UN">
+      <button class=submitButton>Search</button>
+    </form>
+      <h1></h1>
+      <div>
+        <table class=admin_table>
+        
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <br>
+          {{#table}}
+          <tbody>
+            <tr>
+              <td>{{name}}</td>
+              <td>{{date}}</td>
+              <td>{{starttime}}</td>
+              <td>{{endtime}}</td>
+              <td>{{onleave}}</td>
+            </tr>
+          </tbody>
+          {{/table}} 
+          <br>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

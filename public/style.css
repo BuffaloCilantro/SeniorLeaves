@@ -1,0 +1,84 @@
+/* Fonts from Google Fonts - more at https://fonts.google.com */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700');
+
+html {
+  background: url("https://i.imgur.com/3nYnOgQ.jpg");
+  font-family: "Impact";
+  font-size: 18px;
+  color: #444;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  background-position:center top;
+
+}
+
+.login {
+  margin-top: 10%;
+  width: 20%;
+  /*border: 10px solid maroon;*/
+  background: #cc00ff;
+  background: linear-gradient(to bottom right, #ff66ff, #9999ff);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 0px 90px;
+}
+
+.choices, .submitButton {
+  font-family: "Impact";
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 0;
+  display: inline;
+  background: #ff66ff;
+  border: 0;
+  border-radius: 3px;
+  color: #b300b3;
+  padding: 8px;
+  
+}
+.admin, .form {
+  
+  font-family: "Impact";
+  display: block;
+  background: #0d1a26;
+  margin-top: 0px;
+  text-align: center;
+  color: grey;
+  width: 90px;
+  height: 35px;
+  border: 0;
+  padding: 8px;
+}
+
+#UNInput {
+  width: 50%;
+}
+
+#seniorLeaves {
+  padding-bottom: 5px;
+}
+
+
+.admin_portal {
+  margin-top: 10%;
+  margin-left:10%;
+  width: 80%;
+  /*border: 10px solid maroon;*/
+  background: #cc00ff;
+  background: linear-gradient(to bottom right, #ff66ff, #9999ff);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 0px 90px;
+}
+
+
+.admin_table{
+  color:lightgray;
+  width:100%;
+  background:linear-gradient(to bottom right, grey, purple);
+  overflow-y: scroll;
+}
+
