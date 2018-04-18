@@ -114,7 +114,7 @@ app.post("/postTimeStart", function(request, response) {
 		var d = new Date()
 		if (d.getHours() < 12) {
 			console.log(d.getHours(), ':', d.getMinutes(), "AM" )
-			//conn.query("INSERT", d.getHours(), ':', d.getMinutes(), "AM" ,"INTO starttime FROM seniorLeaves WHERE username=", "'", userName,"'")
+			conn.query("UPDATE seniorLeaves SET starttime = ?, endtime = ? WHERE username = ?", ["69AM", "69AM", "AdamWilson69"] )
 		}
 		if (d.getHours() > 12){
 			console.log((d.getHours() - 12), ':', d.getMinutes(), "PM" )

@@ -11,6 +11,7 @@ html {
   background-repeat: no-repeat;
   height: 100%;
   background-position:center top;
+  background-attachment: fixed;
 
 }
 
@@ -80,6 +81,8 @@ html {
   width:100%;
   background:linear-gradient(to bottom right, grey, purple);
   overflow-y: scroll;
+  padding: 10px;
+  border-radius: 8px;
 }
 
 .modal {
@@ -110,6 +113,14 @@ html {
     animation-duration: 0.4s
 }
 
+td {
+  width: 10%;
+}
+
+th {
+  height: 30px;
+}
+/*
 @-webkit-keyframes slideIn {
     from {bottom: -300px; opacity: 0} 
     to {bottom: 0; opacity: 1}
@@ -129,3 +140,4 @@ html {
     from {opacity: 0} 
     to {opacity: 1}
 }
+*/
