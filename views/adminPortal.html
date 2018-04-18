@@ -10,12 +10,16 @@
     <link rel="stylesheet" href="/style.css">
   </head>
   <body class=admin_portal>
-    <h1>Admin Portal</h1>
+    <h1>Admin Portal</h1> 
     <div id="page_container">
-    <form action="">
-      <input type="text" id="SearchInput" name="UN">
+
+
+    <form action="/stalkStudent" method="POST">
+      <input type="text" id="SearchInput" name="UNSTALK">
       <button class=submitButton>Search</button>
     </form>
+
+
       <h1></h1>
       <div>
         <table class=admin_table>
@@ -37,7 +41,7 @@
               <td>{{date}}</td>
               <td>{{starttime}}</td>
               <td>{{endtime}}</td>
-              <td>{{onleave}}</td>
+              <td>{{status}}</td>
             </tr>
           </tbody>
           {{/table}} 

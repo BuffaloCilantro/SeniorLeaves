@@ -173,6 +173,25 @@ app.post("/loadProfile", function(request, response) {
 	}
 })
 
+app.post("/stalkStudent", function(request, response) {
+	if (request.body.UNSTALK) {
+		conn.query("SELECT * FROM seniorLeaves", function(err, data){
+			if (err) throw err;
+			for (var i = 0; i<data.rows.length; i++){
+				//console.log("wow")
+				if (data.rows[i].password == request.body.STALK){
+					response.render("profilepage.html", {llamas:request.body.UNSTALK.name});
+					break
+				}
+				else if(i == data.rows.length - 1){
+					response.render('login.failure.html');
+					break
+				}
+			}
+		});
+	}
+})
+
 app.listen(8081, console.log("What is Love?"));
 
 
