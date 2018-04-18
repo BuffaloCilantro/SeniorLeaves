@@ -28,21 +28,52 @@
 
       <form action="/postTimeStart" method="POST">
         <input type="submit" class="choices" value="Start Leave" name="startLeave"/>
-        <input type="hidden", name="name", value="{{confusedPlatypus}}"/>
+        <input id="postingTime" type="hidden" name="name" value="{{confusedPlatypus}}"/>
       </form>
 
       <form action="/postTimeEnd" method="POST">
         <input type="submit" class="choices" value="End Leave" name="endLeave"/>
-        <input type="hidden", name="name", value="{{confusedPlatypus}}"/>
+        <input type="hidden" name="name" value="{{confusedPlatypus}}"/>
       </form>
       
       <form action="/getUserPortalLogin" method="GET">
         <input type="submit" class="choices" value="Info" name="info"/>
-        <input type="hidden", name="name", value="{{confusedPlatypus}}"/>
+        <input type="hidden" name="name" value="{{confusedPlatypus}}"/>
       </form>
 
     </div>
     </center>
     
   </body>
+  <!--
+  <button id="wowzers"> HI THERE</button>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      Hello World!
+    </div>
+  </div>
+  -->
 </html>
+
+<!--
+<script type="text/javascript">
+
+var modal = document.getElementById('myModal');
+
+var btn = document.getElementById('postingTime');
+
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+-->
+
+
+
+

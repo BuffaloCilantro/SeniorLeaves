@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var anyDB = require('any-db');
 var conn = anyDB.createConnection('sqlite3://seniorLeaves.db.sqlite3');
 conn.query("DROP TABLE seniorLeaves")
-conn.query("CREATE TABLE IF NOT EXISTS seniorLeaves (username TEXT, name TEXT, email TEXT, password TEXT, remaingleaves INTEGER, starttime TIMESTAMP, endtime TIMESTAMP, onleave INTEGER)");
+conn.query("CREATE TABLE IF NOT EXISTS seniorLeaves (username TEXT, name TEXT, email TEXT, password TEXT, remainingleaves INTEGER, starttime TIMESTAMP, endtime TIMESTAMP, status INTEGER)");
 
 conn.query("INSERT INTO seniorLeaves (username, name, email, password) VALUES (?, ?, ?, ?)", ['rbeisswanger', 'Russel Beisswanger', 'rbeisswanger@students.stab.org', 'betterRedThanExpert'])
 conn.query("INSERT INTO seniorLeaves (username, name, email, password) VALUES (?, ?, ?, ?)", ['ablanton', 'Adele Blanton', 'ablanton@students.stab.org', 'betterRedThanExpert'])

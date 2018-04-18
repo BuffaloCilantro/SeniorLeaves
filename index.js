@@ -1,5 +1,5 @@
 var express = require('express');
-var app = express();
+var app = express(); 
 var mustacheExpress = require('mustache-express');
 var bodyParser = require('body-parser');
 
@@ -105,7 +105,15 @@ var status = 0
 
 
 app.post("/postTimeStart", function(request, response) {
-	var name = request.body.name
+	var modal = request.body.myModal
+	var btn = request.body.postingTime
+
+	btn = function() {
+		modal.style.display = "block";
+	}
+
+	
+	var userName = request.body.name
 	if (status == 1) {
 		response.render("updatingStatusFailure.html");
 	}
@@ -113,6 +121,7 @@ app.post("/postTimeStart", function(request, response) {
 		var d = new Date()
 		if (d.getHours() < 12) {
 			console.log(d.getHours(), ':', d.getMinutes(), "AM" )
+			//conn.query("INSERT", d.getHours(), ':', d.getMinutes(), "AM" ,"INTO starttime FROM seniorLeaves WHERE username=", "'", userName,"'")
 		}
 		if (d.getHours() > 12){
 			console.log((d.getHours() - 12), ':', d.getMinutes(), "PM" )
@@ -122,6 +131,7 @@ app.post("/postTimeStart", function(request, response) {
 		}
 		status += 1;
 	}
+	console.log("checked in");
 });
 
 app.post("/postTimeEnd", function(request, response){
@@ -142,10 +152,13 @@ app.post("/postTimeEnd", function(request, response){
 		}
 		status -= 1;
 	}
+	console.log("checked out");
 });
 
 app.get("/getUserPortalLogin", function(request, response) {
-	response.render("userProfileLogin.html");
+	/*
+	response.render("userProfileLogin.html", {llamas:request.body.name}, {date1: }, {time1a: }, {time1b: }, {date2: }, {time2a: }. {time2b: });
+	*/
 });
 
 app.post("/loadProfile", function(request, response) {
@@ -167,7 +180,7 @@ app.post("/loadProfile", function(request, response) {
 	}
 })
 
-app.listen(8081, console.log("Now listening on 8081"));
+app.listen(8081, console.log("What is Love?"));
 
 
 
