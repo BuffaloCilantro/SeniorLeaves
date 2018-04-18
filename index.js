@@ -105,13 +105,6 @@ var status = 0
 
 
 app.post("/postTimeStart", function(request, response) {
-	var modal = request.body.myModal
-	var btn = request.body.postingTime
-
-	btn = function() {
-		modal.style.display = "block";
-	}
-
 	
 	var userName = request.body.name
 	if (status == 1) {
