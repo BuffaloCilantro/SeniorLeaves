@@ -86,6 +86,7 @@ app.post("/loadAdminPortal", function(request, response){
 	});
 	if (request.body.passwordAttempt == password){
 		response.render("adminPortal.html", {table:stalkerPro})
+		console.log("logged on as admin")
 	}
 	else {
 		response.render("admin.login.failure.html")
@@ -103,49 +104,63 @@ var status = 0
 //if status is 0, you are at school. if status is 1, you are on leave
 //used for situations where seniors might press end leave even though they didn't sign up for a leave
 
+var leave_limit = 2
+//note: utilize remaingLeaves on the database instead of this
 
 app.post("/postTimeStart", function(request, response) {
-	
-	var userName = request.body.name
-	if (status == 1) {
-		response.render("updatingStatusFailure.html");
+	if (leave_limit > 2) {
+		response.render("holder.html")
 	}
-	if (status != 1) {
-		var d = new Date()
-		if (d.getHours() < 12) {
-			console.log(d.getHours(), ':', d.getMinutes(), "AM" )
-			conn.query("UPDATE seniorLeaves SET starttime = ?, endtime = ? WHERE username = ?", ["69AM", "69AM", "AdamWilson69"] )
+
+	if (leave_limit != 2) {
+		var userName = request.body.name
+		if (status == 1) {
+			response.render("updatingStatusFailure.html");
 		}
-		if (d.getHours() > 12){
-			console.log((d.getHours() - 12), ':', d.getMinutes(), "PM" )
+		if (status != 1) {
+			var d = new Date()
+			if (d.getHours() < 12) {
+				console.log(d.getHours(), ':', d.getMinutes(), "AM" );
+				conn.query("UPDATE seniorLeaves SET starttime = ? WHERE username = ?", [(d.getHours() + ':' + d.getMinutes() + " " + "AM"), userName]);
+
+			}
+			if (d.getHours() > 12){
+				console.log((d.getHours() - 12), ':', d.getMinutes(), "PM" );
+				conn.query("UPDATE seniorLeaves SET starttime = ? WHERE username = ?", [((d.getHours() - 12) + ':' + d.getMinutes() + " " + "PM"), userName]);
+			}
+			if (d.getHours() == 12){
+				console.log(d.getHours(), ':', d.getMinutes(), "PM" );
+				conn.query("UPDATE seniorLeaves SET starttime = ? WHERE username = ?", [(d.getHours() + ':' + d.getMinutes() + " " + "PM"), userName]);
+			}
+			status += 1;
 		}
-		if (d.getHours() == 12){
-			console.log(d.getHours(), ':', d.getMinutes(), "PM" )
-		}
-		status += 1;
+		console.log("checked in");
 	}
-	console.log("checked in");
 });
 
 app.post("/postTimeEnd", function(request, response){
-	var name = request.body.name
+	var userName = request.body.name
 	if (status == 0) {
 		response.render("updatingStatusFailure2.html");
 	}
 	if (status != 0) {
 		var d = new Date()
 		if (d.getHours() < 12) {
-			console.log(d.getHours(), ':', d.getMinutes(), "AM" )
+			console.log(d.getHours(), ':', d.getMinutes(), "AM" );
+			conn.query("UPDATE seniorLeaves SET endtime = ? WHERE username = ?", [(d.getHours() + ':' + d.getMinutes() + " " + "AM"), userName]);
 		}
 		if (d.getHours() > 12){
-			console.log((d.getHours() - 12), ':', d.getMinutes(), "PM" )
+			console.log((d.getHours() - 12), ':', d.getMinutes(), "PM" );
+			conn.query("UPDATE seniorLeaves SET endtime = ? WHERE username = ?", [((d.getHours() - 12) + ':' + d.getMinutes() + " " + "PM"), userName]);
 		}
 		if (d.getHours() == 12){
-			console.log(d.getHours(), ':', d.getMinutes(), "PM" )
+			console.log(d.getHours(), ':', d.getMinutes(), "PM" );
+			conn.query("UPDATE seniorLeaves SET endtime = ? WHERE username = ?", [(d.getHours() + ':' + d.getMinutes() + " " + "PM"), userName]);
 		}
 		status -= 1;
 	}
 	console.log("checked out");
+	leave_limit += 1;
 });
 
 app.get("/getUserPortalLogin", function(request, response) {

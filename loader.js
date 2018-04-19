@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var anyDB = require('any-db');
 var conn = anyDB.createConnection('sqlite3://seniorLeaves.db.sqlite3');
 conn.query("DROP TABLE seniorLeaves")
-conn.query("CREATE TABLE IF NOT EXISTS seniorLeaves (username TEXT, name TEXT, email TEXT, password TEXT, remainingleaves INTEGER, starttime TIMESTAMP, endtime TIMESTAMP, status INTEGER)");
+conn.query("CREATE TABLE IF NOT EXISTS seniorLeaves (username TEXT, name TEXT, email TEXT, password TEXT, remainingleaves INTEGER, starttime INTEGER, endtime INTEGER, status INTEGER)");
 
 conn.query("INSERT INTO seniorLeaves (username, name, email, password, status) VALUES (?, ?, ?, ?, ?)", ['rbeisswanger', 'Russel Beisswanger', 'rbeisswanger@students.stab.org', 'betterRedThanExpert', 0])
 conn.query("INSERT INTO seniorLeaves (username, name, email, password, status) VALUES (?, ?, ?, ?, ?)", ['ablanton', 'Adele Blanton', 'ablanton@students.stab.org', 'betterRedThanExpert', 0])
@@ -87,7 +87,7 @@ conn.query("INSERT INTO seniorLeaves (username, name, email, password, status) V
 conn.query("INSERT INTO seniorLeaves (username, name, email, password, status) VALUES (?, ?, ?, ?, ?)", ['bdang', 'Bob Dang', 'bdang@students.stab.org', 'betterRedThanExpert', 0])
 conn.query("INSERT INTO seniorLeaves (username, name, email, password, status) VALUES (?, ?, ?, ?, ?)", ['aforward', 'Annabel Forward', 'aforward@students.stab.org', 'betterRedThanExpert', 0])
 conn.query("INSERT INTO seniorLeaves (username, name, email, password, status) VALUES (?, ?, ?, ?, ?)", ['cjones3', 'Catie Jones', 'catjones@students.stab.org', 'betterRedThanExpert', 0])
-conn.query("INSERT INTO seniorLeaves (username, name, email, password, status) VALUES (?, ?, ?, ?, ?)", ['skim', 'Sam Kim', 'skim@students.stab.org', 'aa', 0])
+conn.query("INSERT INTO seniorLeaves (username, name, email, password, status, starttime) VALUES (?, ?, ?, ?, ?, ?)", ['skim', 'Sam Kim', 'skim@students.stab.org', 'aa', 0, 79])
 conn.query("INSERT INTO seniorLeaves (username, name, email, password, status) VALUES (?, ?, ?, ?, ?)", ['brickards', 'Bruce Rickards', 'brickards@students.stab.org', 'betterRedThanExpert', 0])
 conn.query("INSERT INTO seniorLeaves (username, name, email, password, status) VALUES (?, ?, ?, ?, ?)", ['jperkins2', 'Jeffery Perkins', 'jperkins@students.stab.org', 'betterRedThanExpert', 0])
 conn.query("INSERT INTO seniorLeaves (username, name, email, password, status) VALUES (?, ?, ?, ?, ?)", ['smoore', 'Savraj Moore', 'samoore@students.stab.org', 'betterRedThanExpert', 0])
