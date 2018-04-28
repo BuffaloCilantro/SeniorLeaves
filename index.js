@@ -108,30 +108,94 @@ var leave_limit = 2
 //note: utilize remaingLeaves on the database instead of this
 
 app.post("/postTimeStart", function(request, response) {
+	/*
 	if (leave_limit > 2) {
 		response.render("holder.html")
 	}
+	*/
+	//if (leave_limit != 2) {
+	var userName = request.body.name
+	if (status == 1) {
+		response.render("updatingStatusFailure.html", {confusedPlatypus:request.body.name});
+	}
+	if (status != 1) {
+		var d = new Date()
+		if (d.getHours() < 12) {
+			console.log(d.getHours(), ':', d.getMinutes(), "AM" );
+			var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth()+1; //January is 0
+			var yyyy = today.getFullYear();
+			var minutes = d.getMinutes();
+			var dateStamp = "";
+			if (dd<10) {
+  			  dd = '0' + dd
+			} 
+			if (mm<10) {
+    			mm = '0' + mm
+			} 
+			var dateStamp = mm + '/' + dd + '/' + yyyy;
 
-	if (leave_limit != 2) {
-		var userName = request.body.name
-		if (status == 1) {
-			response.render("updatingStatusFailure.html");
+			if (d.getMinutes() < 10) {
+				minutes = '0' + minutes;
+			}
+
+			conn.query("UPDATE seniorLeaves SET mostrecentleave = ? WHERE username = ?", [dateStamp, userName]);
+			conn.query("UPDATE seniorLeaves SET starttime = ? WHERE username = ?", [(d.getHours() + ':' + minutes + " " + "AM"), userName]);
+			status += 1;
+
 		}
-		if (status != 1) {
-			var d = new Date()
-			if (d.getHours() < 12) {
-				console.log(d.getHours(), ':', d.getMinutes(), "AM" );
-				conn.query("UPDATE seniorLeaves SET starttime = ? WHERE username = ?", [(d.getHours() + ':' + d.getMinutes() + " " + "AM"), userName]);
 
+
+		if (d.getHours() > 12) {
+			console.log((d.getHours() - 12), ':', d.getMinutes(), "PM" );
+			var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth()+1; //January is 0
+			var yyyy = today.getFullYear();
+			var minutes = d.getMinutes();
+			var dateStamp = "";
+			if (dd<10) {
+  				dd = '0' + dd
+			} 
+			if (mm<10) {
+    			mm = '0' + mm
 			}
-			if (d.getHours() > 12){
-				console.log((d.getHours() - 12), ':', d.getMinutes(), "PM" );
-				conn.query("UPDATE seniorLeaves SET starttime = ? WHERE username = ?", [((d.getHours() - 12) + ':' + d.getMinutes() + " " + "PM"), userName]);
+			var dateStamp = mm + '/' + dd + '/' + yyyy;
+
+			if (d.getMinutes() < 10) {
+				minutes = '0' + minutes;
 			}
-			if (d.getHours() == 12){
-				console.log(d.getHours(), ':', d.getMinutes(), "PM" );
-				conn.query("UPDATE seniorLeaves SET starttime = ? WHERE username = ?", [(d.getHours() + ':' + d.getMinutes() + " " + "PM"), userName]);
+
+			conn.query("UPDATE seniorLeaves SET mostrecentleave = ? WHERE username = ?", [dateStamp, userName]);
+			conn.query("UPDATE seniorLeaves SET starttime = ? WHERE username = ?", [((d.getHours() - 12) + ':' + minutes + " " + "PM"), userName]);
+			status += 1;
+		}
+
+
+		if (d.getHours() == 12){
+			console.log(d.getHours(), ':', d.getMinutes(), "PM" );
+			var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth()+1; //January is 0
+			var yyyy = today.getFullYear();
+			var minutes = d.getMinutes();
+			var dateStamp = "";
+			if (dd<10) {
+	  			dd = '0' + dd
+			} 
+			if (mm<10) {
+	    		mm = '0' + mm
+			} 
+			var dateStamp = mm + '/' + dd + '/' + yyyy;
+
+			if (d.getMinutes() < 10) {
+				minutes = '0' + minutes;
 			}
+
+			conn.query("UPDATE seniorLeaves SET mostrecentleave = ? WHERE username = ?", [dateStamp, userName]);
+			conn.query("UPDATE seniorLeaves SET starttime = ? WHERE username = ?", [(d.getHours() + ':' + minutes + " " + "PM"), userName]);
+				
 			status += 1;
 		}
 		console.log("checked in");
@@ -147,28 +211,88 @@ app.post("/postTimeEnd", function(request, response){
 		var d = new Date()
 		if (d.getHours() < 12) {
 			console.log(d.getHours(), ':', d.getMinutes(), "AM" );
-			conn.query("UPDATE seniorLeaves SET endtime = ? WHERE username = ?", [(d.getHours() + ':' + d.getMinutes() + " " + "AM"), userName]);
+			var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth()+1; //January is 0
+			var yyyy = today.getFullYear();
+			var minutes = d.getMinutes();
+			var dateStamp = "";
+			if (dd<10) {
+  			  dd = '0' + dd
+			} 
+			if (mm<10) {
+    			mm = '0' + mm
+			} 
+			var dateStamp = mm + '/' + dd + '/' + yyyy;
+
+			if (d.getMinutes() < 10) {
+				minutes = '0' + minutes;
+			}
+
+			conn.query("UPDATE seniorLeaves SET mostrecentleave = ? WHERE username = ?", [dateStamp, userName]);
+			conn.query("UPDATE seniorLeaves SET endtime = ? WHERE username = ?", [(d.getHours() + ':' + minutes + " " + "AM"), userName]);
 		}
 		if (d.getHours() > 12){
 			console.log((d.getHours() - 12), ':', d.getMinutes(), "PM" );
-			conn.query("UPDATE seniorLeaves SET endtime = ? WHERE username = ?", [((d.getHours() - 12) + ':' + d.getMinutes() + " " + "PM"), userName]);
+			var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth()+1; //January is 0
+			var yyyy = today.getFullYear();
+			var minutes = d.getMinutes();
+			var dateStamp = "";
+			if (dd<10) {
+  			  dd = '0' + dd
+			} 
+			if (mm<10) {
+    			mm = '0' + mm
+			} 
+			var dateStamp = mm + '/' + dd + '/' + yyyy;
+			if (d.getMinutes() < 10) {
+				minutes = '0' + minutes;
+			}
+			conn.query("UPDATE seniorLeaves SET mostrecentleave = ? WHERE username = ?", [dateStamp, userName]);
+			conn.query("UPDATE seniorLeaves SET endtime = ? WHERE username = ?", [((d.getHours() - 12) + ':' + minutes + " " + "PM"), userName]);
 		}
 		if (d.getHours() == 12){
 			console.log(d.getHours(), ':', d.getMinutes(), "PM" );
-			conn.query("UPDATE seniorLeaves SET endtime = ? WHERE username = ?", [(d.getHours() + ':' + d.getMinutes() + " " + "PM"), userName]);
+			var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth()+1; //January is 0
+			var yyyy = today.getFullYear();
+			var minutes = d.getMinutes();
+			var dateStamp = "";
+			if (dd<10) {
+  			  dd = '0' + dd
+			} 
+			if (mm<10) {
+    			mm = '0' + mm
+			} 
+			var dateStamp = mm + '/' + dd + '/' + yyyy;
+			if (d.getMinutes() < 10) {
+				minutes = '0' + minutes;
+			}
+			conn.query("UPDATE seniorLeaves SET mostrecentleave = ? WHERE username = ?", [dateStamp, userName]);
+			conn.query("UPDATE seniorLeaves SET endtime = ? WHERE username = ?", [(d.getHours() + ':' + minutes + " " + "PM"), userName]);
 		}
 		status -= 1;
 	}
+	conn.query("UPDATE seniorLeaves SET remainingleaves = ? WHERE username = ?", [0, "skim"])
 	console.log("checked out");
 	leave_limit += 1;
 });
 
-app.get("/getUserPortalLogin", function(request, response) {
-	/*
-	response.render("userProfileLogin.html", {llamas:request.body.name}, {date1: }, {time1a: }, {time1b: }, {date2: }, {time2a: }. {time2b: });
-	*/
+app.post("/getUserPortalLogin", function(request, response) {
+	var userName = request.body.name
+	profile_data = []
+	conn.query("SELECT * FROM seniorLeaves WHERE username = ?", [userName])
+	.on("data", function(data) {
+		profile_data.push(data);
+	});
+	response.render("profilepage.html", {llamas:profile_data});
+	
 });
 
+/*
 app.post("/loadProfile", function(request, response) {
 	if (request.body.UNInputProfile) {
 		conn.query("SELECT * FROM seniorLeaves", function(err, data){
@@ -187,6 +311,7 @@ app.post("/loadProfile", function(request, response) {
 		});
 	}
 })
+*/
 
 app.post("/stalkStudent", function(request, response) {
 	if (request.body.UNSTALK) {
@@ -205,6 +330,10 @@ app.post("/stalkStudent", function(request, response) {
 			}
 		});
 	}
+})
+
+app.post("/goBack!!!", function(request, response) {
+	response.render("updatingStatus.html", {confusedPlatypus:request.body.UNInput});
 })
 
 app.listen(8081, console.log("What is Love?"));

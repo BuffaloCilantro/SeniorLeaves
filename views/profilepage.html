@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  
+{{#llamas}}
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,25 +18,23 @@
   </form>
     <center>
       <div class="login">
-        <span id="user">Username: {{llamas}}</span> 
+        <span id="user">{{name}}</span> 
+        <br>
 
-        <div class="remainingleaves"> Remaining Leaves</div>
+        <div class="remainingleaves"> Remaining Leaves: {{remainingleaves}}</div>
         
-        <table id ="table" name="table" style="width:100%">
+        <table class ="admin_table" name="table" style="width:100%">
           <tr>
             <th>Date</th>
             <th>Time Left</th> 
-            <th>Time</th> 
+            <th>Time Returned</th> 
+            <th>Status</th>
           </tr>
           <tr>
-            <td>{{date1}}</td>   
-            <td>{{time1a}}</td>
-            <td>{{time1b}}</td>         
-          </tr>
-          <tr> 
-            <td>{{date2}}</td>   
-            <td>{{time2a}}</td>
-            <td>{{time2b}}</td>    
+            <td>{{mostrecentleave}}</td>   
+            <td>{{starttime}}</td>
+            <td>{{time1b}}</td> 
+            <td>{{status}}</td>        
           </tr>
        
         </table>
@@ -51,5 +49,5 @@
     </center>
 
   </body>
-
+{{/llamas}}
 </html>
