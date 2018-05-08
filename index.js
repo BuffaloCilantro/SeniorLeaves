@@ -416,7 +416,7 @@ app.post("/stalkStudent", function(request, response) {
 					break
 				}
 				else if(i == data.rows.length - 1){
-					response.render('login.failure.html');
+					response.render('stalkfailure.html');
 					break
 				}
 			}
