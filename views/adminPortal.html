@@ -26,24 +26,26 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Date</th>
+              <th>Leaves Used</th>
               <th>Start Time</th>
               <th>End Time</th>
               <th>Status</th>
+              <th>Username</th>
             </tr>
           </thead>
           <br>
-          {{#table}}
+          {{#rows}}
           <tbody>
             <tr>
               <td>{{name}}</td>
-              <td>{{date}}</td>
+              <td>{{leavesUsed}}</td>
               <td>{{starttime}}</td>
               <td>{{endtime}}</td>
               <td>{{status}}</td>
+              <td>{{username}}</td>
             </tr>
           </tbody>
-          {{/table}} 
+          {{/rows}} 
           <br>
         </table>
       </div>

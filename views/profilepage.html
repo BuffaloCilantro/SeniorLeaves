@@ -8,20 +8,21 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-  <form action="/" method="GET">
-    <button class="admin" value="admin">
+  <form action="/loadAdminLogin" method="GET" class="admin">
+    <button class="admin" value="Admin">
       Admin Login
     </button>
   </form>
-  <form action="/loadHomepage" class="admin" method="GET">
+  <form action="/" class="admin" method="GET">
     <input type="submit" class="admin" value="Logout">
-  </form>
+  </form>  
+  <button class="admin" onclick="goBack()">
+    Go Back
+  </button>
     <center>
       <div class="login">
         <span id="user">{{name}}</span> 
         <br>
-
-        <div class="remainingleaves"> Remaining Leaves: {{remainingleaves}}</div>
         
         <table class ="admin_table" name="table" style="width:100%">
           <tr>
@@ -29,12 +30,14 @@
             <th>Time Left</th> 
             <th>Time Returned</th> 
             <th>Status</th>
+            <th>Leaves Used</th>
           </tr>
           <tr>
             <td>{{mostrecentleave}}</td>   
             <td>{{starttime}}</td>
-            <td>{{time1b}}</td> 
-            <td>{{status}}</td>        
+            <td>{{endtime}}</td> 
+            <td>{{status}}</td> 
+            <td>{{leavesUsed}}</td>
           </tr>
        
         </table>
@@ -51,3 +54,11 @@
   </body>
 {{/llamas}}
 </html>
+
+
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
